@@ -47,7 +47,7 @@ DNS lives at GoDaddy on that registrar's own nameservers.
 | Record | Value |
 |---|---|
 | `A @` | `185.199.108.153`, `185.199.109.153`, `185.199.110.153`, `185.199.111.153` |
-| `CNAME www` | `<account>.github.io` |
+| `CNAME www` | `thornhaven-capital.github.io` |
 
 Apex is primary; GitHub Pages redirects `www` to it.
 
