@@ -47,7 +47,9 @@ body {
   -webkit-font-smoothing: antialiased;
 }
 
-main { width: 100%; max-width: 26rem; }
+/* Wide enough for the wordmark at its largest (about 528px); the reading
+   content below is constrained separately so it does not stretch with it. */
+main { width: 100%; max-width: 34rem; }
 
 /* ---------- wordmark ---------- */
 
@@ -60,21 +62,25 @@ main { width: 100%; max-width: 26rem; }
   text-transform: uppercase;
 }
 
-/* text-indent cancels the trailing space that letter-spacing appends,
-   which would otherwise push each centred line off the page axis. */
+/* No text-indent correction here. Current engines apply letter-spacing
+   between characters only, so a centred line has no trailing space to
+   cancel — measured, the ink already lands on the axis within 0.01px, and
+   adding the classic text-indent hack pushes the mark 6px to the right.
+
+   The clamp minimum is deliberately low. At 1.5rem it only binds below a
+   282px viewport; a higher floor made the 10-character mark wider than the
+   screen on a phone. */
 .mark__name {
   display: block;
-  font-size: clamp(2.25rem, 8.5vw, 3.5rem);
+  font-size: clamp(1.5rem, 8.5vw, 3.5rem);
   letter-spacing: .22em;
-  text-indent: .22em;
 }
 
 .mark__kind {
   display: block;
   margin-top: .85em;
-  font-size: clamp(.7rem, 1.9vw, .8125rem);
+  font-size: clamp(.65rem, 1.9vw, .8125rem);
   letter-spacing: .55em;
-  text-indent: .55em;
   color: var(--body);
 }
 
@@ -137,7 +143,7 @@ main { width: 100%; max-width: 26rem; }
 
 /* ---------- form ---------- */
 
-.form { margin-top: 1.875rem; text-align: left; }
+.form { max-width: 24rem; margin: 1.875rem auto 0; text-align: left; }
 
 .field { margin-bottom: 1.25rem; }
 
@@ -199,7 +205,7 @@ main { width: 100%; max-width: 26rem; }
 
 .foot {
   width: 100%;
-  max-width: 26rem;
+  max-width: 30rem;
   margin: 0;
   color: var(--muted);
   font-size: .75rem;
