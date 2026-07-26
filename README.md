@@ -28,12 +28,12 @@ python -m http.server 8080
 
 ## Contact form
 
-Posts to Formspree. The endpoint in `index.html` is a placeholder
-(`REPLACE_WITH_FORMSPREE_ID`); until it is replaced the inline script blocks submission and
-points visitors at the mailbox instead of posting into the void.
+Posts to Formspree at `https://formspree.io/f/xgogpqdg`, delivering to
+`manager@thornmgmt.com`.
 
-To wire it up: create a form at formspree.io targeting `manager@thornmgmt.com`, then replace
-the placeholder in the `<form action>`. Send one live test afterwards.
+The inline script keeps a guard: if the endpoint is ever reset to a `REPLACE_WITH`
+placeholder, submission is blocked and visitors are pointed at the mailbox rather than
+posting into the void.
 
 Spam is handled by a `_gotcha` honeypot. There is deliberately no reCAPTCHA — it would add a
 third-party request to a page that currently makes none.
