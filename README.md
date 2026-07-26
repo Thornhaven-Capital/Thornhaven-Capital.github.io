@@ -38,6 +38,20 @@ posting into the void.
 Spam is handled by a `_gotcha` honeypot. There is deliberately no reCAPTCHA — it would add a
 third-party request to a page that currently makes none.
 
+## Search
+
+`index.html` sends `robots: index, follow, nosnippet, max-image-preview:none`. The page is
+findable, but Google shows only the firm name and the domain — no description line.
+
+This is deliberate. The page carries too little prose for a search engine to summarise, so
+left to itself Google composes a snippet from the visible text and drags in the form's field
+labels and the honeypot's "leave this field empty". Removing the snippet is cleaner than
+fighting over its contents, and it keeps the email address and phone number out of search
+results.
+
+Removing the `robots` meta reverts to a Google-composed snippet. If you ever do that, add a
+real `description` first and mark the form region so its labels stay out.
+
 ## Deployment
 
 GitHub Pages, served from `main` at the repository root.
