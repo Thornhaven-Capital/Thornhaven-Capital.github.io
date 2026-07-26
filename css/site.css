@@ -1,0 +1,239 @@
+/* Thornhaven Capital — thornmgmt.com
+   One page. System fonts only: the page makes no external requests. */
+
+:root {
+  --paper:  #FAF9F6;
+  --ink:    #1A1A1A;
+  --body:   #4A4A4A;
+  --muted:  #8A857C;
+  --rule:   #D8D4CC;
+  --accent: #6B5B45;
+
+  --serif: Georgia, 'Iowan Old Style', 'Palatino Linotype', 'Times New Roman', serif;
+  --sans:  -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --paper:  #131211;
+    --ink:    #F2EFE9;
+    --body:   #B5B0A6;
+    --muted:  #7D786F;
+    --rule:   #35322C;
+    --accent: #B49A6E;
+  }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+html { -webkit-text-size-adjust: 100%; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 3rem;
+  padding: 3rem 1.5rem 2rem;
+  background: var(--paper);
+  color: var(--body);
+  font-family: var(--sans);
+  font-size: 16px;
+  line-height: 1.6;
+  text-align: center;
+  -webkit-font-smoothing: antialiased;
+}
+
+main { width: 100%; max-width: 26rem; }
+
+/* ---------- wordmark ---------- */
+
+.mark {
+  margin: 0;
+  font-family: var(--serif);
+  font-weight: 400;
+  line-height: 1;
+  color: var(--ink);
+  text-transform: uppercase;
+}
+
+/* text-indent cancels the trailing space that letter-spacing appends,
+   which would otherwise push each centred line off the page axis. */
+.mark__name {
+  display: block;
+  font-size: clamp(2.25rem, 8.5vw, 3.5rem);
+  letter-spacing: .22em;
+  text-indent: .22em;
+}
+
+.mark__kind {
+  display: block;
+  margin-top: .85em;
+  font-size: clamp(.7rem, 1.9vw, .8125rem);
+  letter-spacing: .55em;
+  text-indent: .55em;
+  color: var(--body);
+}
+
+.rule {
+  width: 56px;
+  height: 1px;
+  margin: 2.5rem auto 0;
+  border: 0;
+  background: var(--rule);
+}
+
+/* ---------- contact ---------- */
+
+.contact {
+  margin: 2.5rem 0 0;
+  padding: 0;
+  list-style: none;
+  line-height: 1.95;
+}
+
+.contact a {
+  color: var(--body);
+  text-decoration: none;
+  letter-spacing: .01em;
+  padding-bottom: 1px;
+  border-bottom: 1px solid transparent;
+  transition: color .18s ease, border-color .18s ease;
+}
+
+.contact a:hover { color: var(--ink); border-bottom-color: var(--accent); }
+
+/* ---------- disclosure ---------- */
+
+.disclosure { margin-top: 2.75rem; }
+
+.disclosure summary {
+  display: inline-block;
+  padding: .375rem 0;
+  color: var(--ink);
+  font-size: .8125rem;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  cursor: pointer;
+  border-bottom: 1px solid transparent;
+  transition: border-color .18s ease;
+  list-style: none;
+}
+.disclosure summary::-webkit-details-marker { display: none; }
+.disclosure summary::marker { content: ''; }
+.disclosure summary:hover { border-bottom-color: var(--accent); }
+
+.chev {
+  display: inline-block;
+  margin-left: .7em;
+  font-size: .625rem;
+  color: var(--muted);
+  transition: transform .2s ease;
+}
+.disclosure[open] .chev { transform: rotate(90deg); }
+
+/* ---------- form ---------- */
+
+.form { margin-top: 1.875rem; text-align: left; }
+
+.field { margin-bottom: 1.25rem; }
+
+.field label {
+  display: block;
+  margin-bottom: .4375rem;
+  color: var(--muted);
+  font-size: .6875rem;
+  letter-spacing: .18em;
+  text-transform: uppercase;
+}
+
+.field input,
+.field textarea {
+  width: 100%;
+  padding: .4375rem 0;
+  color: var(--ink);
+  background: transparent;
+  border: 0;
+  border-bottom: 1px solid var(--rule);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: .9375rem;
+  transition: border-color .18s ease;
+}
+
+.field textarea { min-height: 5.125rem; line-height: 1.6; resize: vertical; }
+
+.field input:focus,
+.field textarea:focus { outline: none; border-bottom-color: var(--accent); }
+
+/* Honeypot: off-screen rather than display:none, so assistive tech can
+   still reach it and the label explains what to do. */
+.hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+
+.btn {
+  margin-top: .5rem;
+  padding: .75rem 1.625rem;
+  color: var(--ink);
+  background: transparent;
+  border: 1px solid var(--ink);
+  border-radius: 0;
+  font-family: inherit;
+  font-size: .75rem;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  cursor: pointer;
+  transition: background .18s ease, color .18s ease;
+}
+.btn:hover { background: var(--ink); color: var(--paper); }
+.btn[disabled] { opacity: .5; cursor: default; }
+.btn[disabled]:hover { background: transparent; color: var(--ink); }
+
+.status { margin: 1rem 0 0; font-size: .84375rem; line-height: 1.6; color: var(--body); }
+.status a { color: var(--ink); }
+.status:empty { margin: 0; }
+
+/* ---------- footer ---------- */
+
+.foot {
+  width: 100%;
+  max-width: 26rem;
+  margin: 0;
+  color: var(--muted);
+  font-size: .75rem;
+  line-height: 1.7;
+  letter-spacing: .02em;
+}
+
+.foot p { margin: 0; }
+.foot .legal { margin-top: .5rem; font-size: .6875rem; }
+
+/* ---------- focus, motion ---------- */
+
+a:focus-visible,
+summary:focus-visible,
+button:focus-visible,
+input:focus-visible,
+textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 4px;
+  border-radius: 1px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    transition-duration: .01ms !important;
+    animation-duration: .01ms !important;
+  }
+}
+
+/* ---------- 404 ---------- */
+
+.notfound {
+  margin: 2.5rem 0 0;
+  color: var(--body);
+  font-size: .9375rem;
+}
+.notfound a { color: var(--ink); }
